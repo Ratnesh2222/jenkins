@@ -1,0 +1,22 @@
+node{
+	stage("my code check out"){
+	sh 'echo "my code check out..."'
+	git branch:'main',url:'https://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@github.com/Ratnesh2222/jenkins.git'
+    sh 'echo "code checkout successfully"'	
+    }
+    stage("compile start"){
+	sh 'echo "compile start..."'
+	sh 'mvn compile'	
+    }
+    stage("Test start"){
+	sh 'echo "test start..."'
+	sh 'mvn test'	
+    }
+    stage("package start"){
+	sh 'echo "package start..."'
+	sh 'mvn package'	
+    }
+    stage("end"){
+	sh 'echo "end...."'
+	}
+}
