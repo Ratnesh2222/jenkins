@@ -1,0 +1,18 @@
+pipeline{
+ agent any
+    stages{
+        stage("my code check out"){
+            steps{
+            sh 'echo "my code check out..."'
+            git branch:'main',url:'https://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@github.com/Ratnesh2222/jenkins.git'
+            sh 'echo "code checkout successfully"'
+            }
+        }
+        stage("package start"){
+            steps{
+            sh 'echo "package start..."'
+	        sh 'mvn clean package'
+            }
+        }
+    }
+}
