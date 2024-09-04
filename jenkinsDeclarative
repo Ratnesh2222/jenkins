@@ -14,5 +14,11 @@ pipeline{
 	        sh 'mvn clean package'
             }
         }
+        stage("Finish"){
+            steps{
+            sh 'echo "Finish..."'
+	        sh 'mvn clean package'
+            }
+        }
     }
 }
