@@ -1,0 +1,159 @@
+sudo cat /var/lib/Jenkins/secrets/initialAdminPassword
+
+user : ratnesh
+pass : ratnesh
+email : 2.ratnesh@gmail.com
+
+url : http://18.221.217.226:8080/
+
+git user 2.ratnesh@gmail.com
+pass: git1234A@
+repo : https://github.com/Ratnesh2222/jenkins
+
+git token
+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
+
+original git clone url :https://github.com/Ratnesh2222/jenkins.git
+
+https://userName:Password@github.com/Ratnesh2222/jenkins.git
+https://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@github.com/Ratnesh2222/jenkins.git
+
+
+
+http://44.243.100.173:8080/job/javaProj1/build?token=myToken
+
+How to create webhook in git:
+go to repo-> setting -> add Payload URL
+
+http://44.243.100.173:8080/github-webhook/
+content type : application/json
+
+code review
+-P metrics pmd:pmd
+plugin: warkings Next Genaration
+**/pmd.xml
+cobertura:cobertura -Dcobertura.report.format.xml
+
+Writing pipeline (groovy), 
+
+Type : 1, scripted
+node{
+	stage("simple-check"){
+	sh 'echo "started checking..."'
+	sh 'echo "welcome to pipeline">>myjlc.txt'
+	sh 'echo "complete..."'
+	}
+}
+
+
+Type : 2, declarative
+pipeline{
+ agent any
+ stages{
+   stage("simple-check"){
+	steps{
+	sh 'echo "started checking..."'
+	sh 'echo "welcome to pipeline">>myjlc.txt'
+	sh 'echo "complete..."'
+	}
+	
+    }
+  }
+}
+
+Type 3: scripted code checkout
+node{
+	stage("my code check out"){
+	sh 'echo "my code check out..."'
+	git branch:'main',url:'https://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@github.com/Ratnesh2222/jenkins.git'
+    sh 'echo "code checkout successfully"'	
+    }
+    stage("package start"){
+	sh 'echo "package start..."'
+	sh 'mvn clean package'	
+    }
+}
+
+type 4: declaratitive code checkout:
+pipeline{
+ agent any
+    stages{
+        stage("my code check out"){
+            steps{
+            sh 'echo "my code check out..."'
+            git branch:'main',url:'https://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@github.com/Ratnesh2222/jenkins.git'
+            sh 'echo "code checkout successfully"'
+            }
+        }
+        stage("package start"){
+            steps{
+            sh 'echo "package start..."'
+	        sh 'mvn clean package'
+            }
+        }
+    }
+}
+
+Type:5-Scripting multi step:
+node{
+	stage("my code check out"){
+	sh 'echo "my code check out..."'
+	git branch:'main',url:'https://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@github.com/Ratnesh2222/jenkins.git'
+    sh 'echo "code checkout successfully"'	
+    }
+    stage("compile start"){
+	sh 'echo "compile start..."'
+	sh 'mvn compile'	
+    }
+    stage("Test start"){
+	sh 'echo "test start..."'
+	sh 'mvn test'	
+    }
+    stage("package start"){
+	sh 'echo "package start..."'
+	sh 'mvn package'	
+    }
+}
+
+Type-6 declarative multi stage
+pipeline{
+ agent any
+    stages{
+        stage("my code check out"){
+            steps{
+            sh 'echo "my code check out..."'
+            git branch:'main',url:'https://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@github.com/Ratnesh2222/jenkins.git'
+            sh 'echo "code checkout successfully"'
+            }
+        }
+        stage("compile start"){
+            steps{
+            sh 'echo "compile start..."'
+	        sh 'mvn compile'
+            }
+        }
+        stage("test start"){
+            steps{
+            sh 'echo "test start..."'
+	        sh 'mvn test'
+            }
+        }
+        stage("package start"){
+            steps{
+            sh 'echo "package start..."'
+	        sh 'mvn package'
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
